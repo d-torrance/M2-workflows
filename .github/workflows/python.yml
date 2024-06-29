@@ -14,7 +14,7 @@ jobs:
           python-version: '3.13-dev'
       - name: Install dependencies
         run : |
-          sudo apt install -y 4ti2 autoconf automake bison ca-certificates cohomcalg coinor-csdp fflas-ffpack flex g++ gfan gfortran git install-info libboost-dev libboost-regex-dev libboost-stacktrace-dev libcdd-dev libeigen3-dev libffi-dev libflint-dev libfrobby-dev libgc-dev libgdbm-dev libgivaro-dev libglpk-dev libgmp-dev libgtest-dev liblzma-dev libmathic-dev libmathicgb-dev libmemtailor-dev libmpfi-dev libmpfr-dev libmps-dev libnauty2-dev libncurses-dev libnormaliz-dev libntl-dev libopenblas-dev libpython3-dev libreadline-dev libsingular-dev libtbb-dev libtool-bin libxml2-dev lrslib make nauty normaliz patch pkgconf singular-data time topcom wget zlib1g-dev
+          sudo apt install -y 4ti2 cohomcalg coinor-csdp fflas-ffpack libboost-dev libboost-regex-dev libboost-stacktrace-dev libcdd-dev libeigen3-dev libflint-dev libfrobby-dev libgc-dev libgdbm-dev libgivaro-dev libglpk-dev libgtest-dev libmathic-dev libmathicgb-dev libmemtailor-dev libmpfi-dev libmpfr-dev libmps-dev libnauty2-dev libnormaliz-dev libntl-dev libopenblas-dev libsingular-dev libtbb-dev libtool-bin lrslib nauty normaliz pkgconf singular-data topcom
       - name: Build Macaulay2
         run: |
           cd M2/M2
