@@ -17,7 +17,7 @@ jobs:
           sudo apt install -y 4ti2 cohomcalg coinor-csdp fflas-ffpack libboost-dev libboost-regex-dev libboost-stacktrace-dev libcdd-dev libeigen3-dev libflint-dev libfrobby-dev libgc-dev libgdbm-dev libgivaro-dev libglpk-dev libgtest-dev libmathic-dev libmathicgb-dev libmemtailor-dev libmpfi-dev libmpfr-dev libmps-dev libnauty2-dev libnormaliz-dev libntl-dev libopenblas-dev libsingular-dev libtbb-dev libtool-bin lrslib nauty normaliz pkgconf singular-data topcom
       - name: Build Macaulay2
         run: |
-          cd M2/M2
+          cd M2
           make
           cd BUILD
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python
