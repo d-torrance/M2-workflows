@@ -23,6 +23,5 @@ jobs:
           cd BUILD
           export LDFLAGS="-L$(python3 -c 'import sysconfig; print(sysconfig.get_config_vars("LIBDIR")[0])')"
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python
-          export PACKAGES=Python
-          make
-          make test
+          make PACKAGES=Python
+          make test PACKAGES=Python
