@@ -1,5 +1,7 @@
 name: Build against Python 3.13
-on: push
+on:
+  schedule:
+    - cron: "0 6 * * 3"
 
 jobs:
   python:
