@@ -1,5 +1,7 @@
 name: Build on Fedora
-on: push
+on:
+  schedule:
+    - cron: "0 6 * * 4"
 
 jobs:
   fedora:
