@@ -5,6 +5,7 @@ jobs:
   fedora:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         version: [39, 40, 41]
     container:
