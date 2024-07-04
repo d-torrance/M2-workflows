@@ -8,7 +8,7 @@ jobs:
       matrix:
         version: [39, 40, 41]
     container:
-      image: fedora:$${{ matrix.version }}
+      image: fedora:${{ matrix.version }}
     steps:
       - uses: actions/checkout@v4
         with:
