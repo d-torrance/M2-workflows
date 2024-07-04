@@ -1,0 +1,16 @@
+name: Build on Fedora
+on: push
+
+jobs:
+  fedora:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [39, 40, 41]
+    container:
+      image: fedora:$${{ matrix.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'Macaulay2/M2'
+          ref: 'development'
