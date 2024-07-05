@@ -1,4 +1,4 @@
-name: Build on Fedora
+name: Fedora build
 on:
   schedule:
     - cron: "0 6 * * 4"

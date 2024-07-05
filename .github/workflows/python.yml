@@ -1,4 +1,4 @@
-name: Build against Python 3.13
+name: Python build
 on:
   schedule:
     - cron: "0 6 * * 3"
