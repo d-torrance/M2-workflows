@@ -1,7 +1,5 @@
 name: RHEL build
-on:
-  schedule:
-    - cron: "0 6 * * 5"
+on: push
 
 jobs:
   fedora:
