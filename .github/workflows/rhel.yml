@@ -2,7 +2,7 @@ name: RHEL build
 on: push
 
 jobs:
-  fedora:
+  rhel:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
