@@ -25,4 +25,4 @@ jobs:
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb -with-python --enable-download CPPFLAGS=-I/usr/include/frobby
           make
       - name: Test Macaulay2
-        run: make test
+        run: make check
