@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [rockylinux:8, rockylinux:9, almalinux:8, almalinux:9]
+        version: ['rockylinux:8', 'rockylinux:9', 'almalinux:8', 'almalinux:9']
     container:
       image: ${{ matrix.version }}
     steps:
