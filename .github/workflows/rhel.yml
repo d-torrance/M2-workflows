@@ -1,0 +1,29 @@
+name: RHEL build
+on: push
+
+jobs:
+  fedora:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [rockylinux:8, rockylinux:9, almalinux:8, almalinux:9]
+    container:
+      image: ${{ matrix.version }}
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf config-manager --set-enabled crb
+          dnf install epel-release
+          sudo dnf -y install autoconf automake bison boost-devel diffutils eigen3 flex g++ gc-devel gcc-gfortran gdbm-devel git glpk-devel gmp-devel lapack-devel libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel patch python3-devel readline-devel tbb-devel which xz-devel zlib-devel
+      - name: Clone repository
+        run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
+      - name: Build Macaulay2
+        run: |
+          cd M2/M2
+          make
+          cd BUILD
+          ../configure --with-system-gc -with-python --enable-download
+          make
+      - name: Test Macaulay2
+        run: make check
