@@ -28,4 +28,4 @@ jobs:
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-documentation=info
           make PACKAGES=Python
       - name: Test Macaulay2
-        run: make -C M2/M2/BUILD/Macaulay2/packages check-Python
+        run: make -C M2/BUILD/Macaulay2/packages check-Python
