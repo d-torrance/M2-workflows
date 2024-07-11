@@ -26,4 +26,6 @@ jobs:
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-download CPPFLAGS=-I/usr/include/frobby
           make
       - name: Test Macaulay2
-        run: make -C M2/M2/BUILD check
+        run: |
+          sudo dnf -y install time
+          make -C M2/M2/BUILD check
