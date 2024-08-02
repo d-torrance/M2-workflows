@@ -23,7 +23,7 @@ jobs:
           cd M2/M2
           make
           cd BUILD
-          ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-download CPPFLAGS=-I/usr/include/frobby
+          ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-download
           make
       - name: Test Macaulay2
         run: |
