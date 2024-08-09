@@ -29,7 +29,9 @@ jobs:
         run: |
           sudo dnf -y install time
           make -C M2/M2/BUILD check
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: fedora-${{ matrix.version }}-artifacts
           path: |
