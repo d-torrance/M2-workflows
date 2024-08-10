@@ -15,7 +15,13 @@ jobs:
       image: fedora:${{ matrix.version }}
     steps:
       - name: Install dependencies
-        run: sudo dnf -y install 4ti2 TOPCOM autoconf automake bison boost-devel cddlib-devel cohomCalg csdp-tools diffutils eigen3-devel factory-devel fflas-ffpack-devel flex flint-devel g++ gc-devel gcc-gfortran gdbm-devel gfan git glpk-devel gmp-devel lapack-devel libffi-devel libfrobby-devel libnauty-devel libnormaliz-devel libtool libxml2-devel lrslib-utils make mathic-devel mathicgb-devel memtailor-devel mpfi-devel mpfr-devel mpsolve-devel msolve nauty ncurses-devel normaliz ntl-devel patch python3-devel readline-devel tbb-devel which xz-devel zlib-devel
+        run: |
+          sudo dnf -y install 4ti2 TOPCOM autoconf automake bison boost-devel cddlib-devel cohomCalg csdp-tools diffutils eigen3-devel factory-devel fflas-ffpack-devel flex flint-devel g++ gc-devel gcc-gfortran gdbm-devel gfan git glpk-devel gmp-devel lapack-devel libffi-devel libfrobby-devel libnauty-devel libnormaliz-devel libtool libxml2-devel lrslib-utils make mathic-devel mathicgb-devel memtailor-devel mpfi-devel mpfr-devel mpsolve-devel msolve nauty ncurses-devel normaliz ntl-devel patch python3-devel readline-devel tbb-devel which xz-devel zlib-devel
+          if test ${{ matrix.version }} = 39
+          then
+            sudo dnf -y arb-devel
+          fi
+
       - name: Clone repository
         run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
       - name: Build Macaulay2
