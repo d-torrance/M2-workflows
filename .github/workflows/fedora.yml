@@ -21,13 +21,6 @@ jobs:
           then
             sudo dnf -y install arb-devel
           fi
-          # lrslib package started using environment modules w/ version 7.3
-          if ! command -v lrs
-          then
-            sudo dnf -y install environment-modules
-            source /etc/profile.d/modules.sh
-            module load lrslib-x86_64
-          fi
 
       - name: Clone repository
         run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
@@ -36,6 +29,13 @@ jobs:
           cd M2/M2
           make
           cd BUILD
+          # lrslib package started using environment modules w/ version 7.3
+          if ! command -v lrs
+          then
+            sudo dnf -y install environment-modules
+            source /etc/profile.d/modules.sh
+            module load lrslib-x86_64
+          fi
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-download CPPFLAGS=-I/usr/include/arb
           make
       - name: Test Macaulay2
