@@ -22,7 +22,7 @@ jobs:
             sudo dnf -y install arb-devel
           fi
           # lrslib package started using environment modules w/ version 7.3
-          if !command -v lrs
+          if ! command -v lrs
           then
             sudo dnf -y install environment-modules
             source /etc/profile.d/modules.sh
