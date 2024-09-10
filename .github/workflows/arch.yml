@@ -1,0 +1,37 @@
+name: Arch Linux build
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 6"
+
+jobs:
+  fedora:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo pacman -S 4ti2 autoconf automake bison boost cddlib coin-or-csdp eigen fflas-ffpack flex flint gc gcc gcc-fortran gfan git givaro glpk gtest icu libtool libxml2 lrs make mpfi nauty normaliz ntl onetbb patch pkgconf python singular texinfo time topcom which
+      - name: Clone repository
+        run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
+      - name: Build Macaulay2
+        run: |
+          cd M2/M2
+          make
+          cd BUILD
+          ../configure --with-system-gc --with-python --enable-download --with-gtest-source-path=/usr/src/googletest
+          make
+      - name: Test Macaulay2
+        run: |
+          make -C M2/M2/BUILD check
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archlinux-latest-artifacts
+          path: |
+            M2/M2/BUILD/config.log
+            M2/M2/BUILD/usr-dist-common/share/doc/Macaulay2/*/example-output/*.errors
+            /tmp/M2-*/*.tmp
+            /tmp/M2-*/*.m2
