@@ -30,7 +30,7 @@ jobs:
       - name: Build Macaulay2
         run: |
           cd M2/M2
-          make
+          ./autogen.sh
           cd BUILD
           ../configure --with-system-gc --with-python --enable-download
           make

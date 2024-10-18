@@ -27,7 +27,7 @@ jobs:
       - name: Build Macaulay2
         run: |
           cd M2/M2
-          make
+          ./autogen.sh
           cd BUILD
           # lrslib package started using environment modules w/ version 7.3
           if ! command -v lrs
