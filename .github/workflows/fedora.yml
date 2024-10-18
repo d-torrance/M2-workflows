@@ -36,7 +36,7 @@ jobs:
             source /etc/profile.d/modules.sh
             module load lrslib-x86_64
           fi
-          ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --with-python --enable-download CPPFLAGS=-I/usr/include/arb
+          ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --enable-download CPPFLAGS=-I/usr/include/arb
           make
       - name: Test Macaulay2
         run: |
