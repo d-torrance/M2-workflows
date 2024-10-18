@@ -29,3 +29,13 @@ jobs:
           make PACKAGES=Python
       - name: Test Macaulay2
         run: make -C M2/BUILD/Macaulay2/packages check-Python
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-artifacts
+          path: |
+            M2/M2/BUILD/config.log
+            M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            /tmp/M2-*/*.tmp
+            /tmp/M2-*/*.m2

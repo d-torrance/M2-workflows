@@ -32,6 +32,6 @@ jobs:
           name: archlinux-latest-artifacts
           path: |
             M2/M2/BUILD/config.log
-            M2/M2/BUILD/usr-dist-common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
             /tmp/M2-*/*.tmp
             /tmp/M2-*/*.m2
