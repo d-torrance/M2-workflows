@@ -10,14 +10,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['rockylinux:8', 'rockylinux:9', 'almalinux:8', 'almalinux:9']
+        distribution: ['rockylinux', 'almalinux']
+        version: [8, 9]
     container:
-      image: ${{ matrix.version }}
+      image: ${{ matrix.distribution }}:${{ matrix.version }}
     steps:
       - name: Install dependencies
         run: |
           dnf install -y 'dnf-command(config-manager)'
-          if [[ ${{ matrix.version }} =~ 8$ ]]
+          if [[ ${{ matrix.version }} = 8 ]]
           then
             dnf config-manager --set-enabled powertools
           else
@@ -40,7 +41,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.version }}-artifacts
+          name: ${{ matrix.distribution }}-${{ matrix.version }}-artifacts
           path: |
             M2/M2/BUILD/config.log
             M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
