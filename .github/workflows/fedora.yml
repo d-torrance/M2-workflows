@@ -29,7 +29,7 @@ jobs:
           cd M2/M2
           sed -i 's/150/350/' libraries/msolve/Makefile.in
           ./autogen.sh
-          cd BUILD
+          cd BUILD/build
           # lrslib package started using environment modules w/ version 7.3
           if ! command -v lrs
           then
@@ -45,7 +45,8 @@ jobs:
         with:
           name: fedora-${{ matrix.version }}-artifacts
           path: |
-            M2/M2/BUILD/config.log
-            M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/M2/BUILD/build/config.log
+            M2/M2/BUILD/build/libraries/*/build/*/config.log
+            M2/M2/BUILD/build/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
             /tmp/M2-*/*.tmp
             /tmp/M2-*/*.m2

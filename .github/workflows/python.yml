@@ -23,19 +23,20 @@ jobs:
         run: |
           cd M2
           ./autogen.sh
-          cd BUILD
+          cd BUILD/build
           export LDFLAGS="-L$(python3 -c 'import sysconfig; print(sysconfig.get_config_vars("LIBDIR")[0])')"
           ../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb --enable-documentation=info
           make PACKAGES=Python
       - name: Test Macaulay2
-        run: make -C M2/BUILD/Macaulay2/packages check-Python
+        run: make -C M2/BUILD/build/Macaulay2/packages check-Python
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: python-artifacts
           path: |
-            M2/M2/BUILD/config.log
-            M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/M2/BUILD/build/config.log
+            M2/M2/BUILD/build/libraries/*/build/*/config.log
+            M2/M2/BUILD/build/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
             /tmp/M2-*/*.tmp
             /tmp/M2-*/*.m2

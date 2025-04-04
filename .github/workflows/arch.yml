@@ -19,7 +19,7 @@ jobs:
         run: |
           cd M2/M2
           ./autogen.sh
-          cd BUILD
+          cd BUILD/build
           ../configure --with-system-gc --enable-download --with-gtest-source-path=/usr/src/googletest
           make
       - name: Upload artifacts
@@ -28,7 +28,8 @@ jobs:
         with:
           name: archlinux-latest-artifacts
           path: |
-            M2/M2/BUILD/config.log
-            M2/M2/BUILD/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/M2/BUILD/build/config.log
+            M2/M2/BUILD/build/libraries/*/build/*/config.log
+            M2/M2/BUILD/build/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
             /tmp/M2-*/*.tmp
             /tmp/M2-*/*.m2
