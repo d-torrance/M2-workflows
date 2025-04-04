@@ -20,7 +20,7 @@ jobs:
           cd M2/M2
           ./autogen.sh
           cd BUILD/build
-          ../configure --with-system-gc --enable-download --with-gtest-source-path=/usr/src/googletest
+          ../../configure --with-system-gc --enable-download --with-gtest-source-path=/usr/src/googletest
           make
       - name: Upload artifacts
         if: always()
