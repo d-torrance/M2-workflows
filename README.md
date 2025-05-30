@@ -14,7 +14,7 @@ We build and test Macaulay2 on all supported versions of Fedora (currently 39, 4
 
 ## Red Hat Enterprise Linux
 
-We build and test Macaulay2 on several RHEL-compatible distributions (AlmaLinux 8 and 9 and Rocky Linux 8 and 9).
+We build and test Macaulay2 on several RHEL-compatible distributions (AlmaLinux 8, 9, and 10 and Rocky Linux 8 and 9).
 
 [![RHEL build](https://github.com/d-torrance/M2-workflows/actions/workflows/rhel.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/rhel.yml)
 
