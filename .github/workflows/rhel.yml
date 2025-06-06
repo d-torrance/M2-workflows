@@ -12,6 +12,9 @@ jobs:
       matrix:
         distribution: ['rockylinux', 'almalinux']
         version: [8, 9, 10]
+        exclude:
+          - distribution: rockylinux
+            version: 10
     container:
       image: ${{ matrix.distribution }}:${{ matrix.version }}
     steps:
