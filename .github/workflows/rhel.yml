@@ -40,7 +40,7 @@ jobs:
           cd M2/M2
           ./autogen.sh
           cd BUILD/build
-          ../../configure --with-system-gc --enable-download
+          ../../configure --with-system-gc
           make
       - name: Upload artifacts
         if: always()
