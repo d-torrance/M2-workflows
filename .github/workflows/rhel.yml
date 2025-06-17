@@ -10,10 +10,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distribution: ['rockylinux/rockylinux', 'almalinux']
+        distribution: ['rockylinux', 'almalinux']
         version: [8, 9, 10]
     container:
-      image: ${{ matrix.distribution }}:${{ matrix.version }}
+      image: ${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }}${{ matrix.version }}
     steps:
       - name: Install dependencies
         run: |
