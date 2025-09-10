@@ -17,19 +17,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          dnf install -y 'dnf-command(config-manager)'
-          if [[ ${{ matrix.version }} = 8 ]]
-          then
-            dnf config-manager --set-enabled powertools
-          else
-            dnf config-manager --set-enabled crb
-          fi
-          dnf install -y epel-release
-          dnf -y install autoconf automake bison boost-devel bzip2 cmake diffutils eigen3 flex gcc-c++ gcc-gfortran gdbm-devel git gmp-devel gtest-devel lapack-devel libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel openblas-devel patch python3-devel readline-devel tbb-devel time which xz-devel zlib-devel
-          if [[ ${{ matrix.version }} != 10 ]]
-          then
-            dnf install -y gc-devel glpk-devel
-          fi
+          dnf -y install autoconf automake bison boost-devel bzip2 cmake diffutils flex flexiblas-dev gcc-c++ gcc-gfortran git gmp-devel libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel patch python3-devel readline-devel tbb-devel time which xz-devel zlib-devel
       - name: Clone repository
         run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
       - name: Build Macaulay2
@@ -37,7 +25,7 @@ jobs:
           cd M2/M2
           ./autogen.sh
           cd BUILD/build
-          ../../configure --with-system-gc
+          ../../configure
           make
       - name: Upload artifacts
         if: always()
