@@ -12,6 +12,11 @@ We build and test Macaulay2 on all supported versions of Fedora (currently 39, 4
 
 [![Fedora build](https://github.com/d-torrance/M2-workflows/actions/workflows/fedora.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/fedora.yml)
 
+## OpenSUSE
+We build and test Macaulay2 on OpenSUSE Tumbleweed.
+
+[![OpenSUSE build](https://github.com/d-torrance/M2-workflows/actions/workflows/suse.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/suse.yml)
+
 ## Red Hat Enterprise Linux
 
 We build and test Macaulay2 on several RHEL-compatible distributions (AlmaLinux and Rocky Linux 8, 9, and 10)
