@@ -5,14 +5,14 @@ on:
     - cron: "0 6 * * 0"
 
 jobs:
-  fedora:
+  suse:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         version: [leap, tumbleweed]
     container:
-      image: opensuse:${{ matrix.version }}
+      image: opensuse/${{ matrix.version }}
     steps:
       - name: Install dependencies
         run: |
