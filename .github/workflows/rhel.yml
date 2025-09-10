@@ -17,7 +17,11 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          dnf -y install autoconf automake bison boost-devel bzip2 cmake diffutils flex flexiblas-devel gcc-c++ gcc-gfortran git gmp-devel libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel patch python3-devel readline-devel tbb-devel time which xz-devel zlib-devel
+          dnf -y install autoconf automake bison boost-devel bzip2 cmake diffutils flex flexiblas-devel gcc-c++ gcc-gfortran git gmp-devel info libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel patch python3-devel readline-devel tbb-devel time which xz-devel zlib-devel
+          if test ${{ matrix.version }} -ge 9
+          then
+            dnf -y install flexiblas-devel
+          fi
       - name: Clone repository
         run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
       - name: Build Macaulay2
