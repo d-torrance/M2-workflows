@@ -10,7 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [40, 41, 42, rawhide]
+        # last two EOL releases -> rawhide
+        version: [39, 40, 41, 42, 43, 44]
     container:
       image: fedora:${{ matrix.version }}
     steps:

@@ -8,7 +8,7 @@ We build and test Macaulay2 on Arch Linux.
 [![Arch Linux build](https://github.com/d-torrance/M2-workflows/actions/workflows/arch.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/arch.yml)
 
 ## Fedora
-We build and test Macaulay2 on all supported versions of Fedora (currently 39, 40, 41, and Rawhide).
+We build and test Macaulay2 on Fedora (currently 39 through 44).
 
 [![Fedora build](https://github.com/d-torrance/M2-workflows/actions/workflows/fedora.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/fedora.yml)
 
