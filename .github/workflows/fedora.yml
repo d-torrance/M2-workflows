@@ -11,43 +11,29 @@ jobs:
       fail-fast: false
       matrix:
         # last two EOL releases -> rawhide
-        version: [39, 40, 41, 42, 43, 44]
-    container:
-      image: fedora:${{ matrix.version }}
+        release:
+          - 39
+          - 40
+          - 41
+          - 42
+          - 43
+          - 44
     steps:
-      - name: Install dependencies
+      - uses: actions/checkout@v5
+        with:
+          repository: Macaulay2/M2
+          ref: development
+      - name: Build RPM
         run: |
-          sudo dnf -y install 4ti2 TOPCOM autoconf automake bison boost-devel cddlib-devel cohomCalg csdp-tools diffutils eigen3-devel factory-devel fflas-ffpack-devel flex flint-devel g++ gawk gc-devel gcc-gfortran gdbm-devel gfan git glpk-devel gmp-devel gtest-devel lapack-devel libffi-devel libfrobby-devel libnauty-devel libnormaliz-devel libtool libxml2-devel lrslib-utils make mathic-devel mathicgb-devel memtailor-devel mpfi-devel mpfr-devel mpsolve-devel msolve nauty ncurses-devel normaliz ntl-devel patch python3-devel readline-devel tbb-devel which xz-devel zlib-devel
-          if test ${{ matrix.version }} = 39
-          then
-            sudo dnf -y install arb-devel
-          fi
-
-      - name: Clone repository
-        run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
-      - name: Build Macaulay2
-        run: |
-          cd M2/M2
-          sed -i 's/150/350/' libraries/msolve/Makefile.in
-          ./autogen.sh
-          cd BUILD/build
-          # lrslib package started using environment modules w/ version 7.3
-          if ! command -v lrs
-          then
-            sudo dnf -y install environment-modules
-            source /etc/profile.d/modules.sh
-            module load lrslib-x86_64
-          fi
-          ../../configure --with-system-gc --with-system-memtailor --with-system-mathic --with-system-mathicgb CPPFLAGS=-I/usr/include/arb
-          make
+          cd M2/BUILD/rpm
+          make rpm DISTRIBUTION=fedora RELEASE=${{ matrix.release }}
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fedora-${{ matrix.version }}-artifacts
           path: |
-            M2/M2/BUILD/build/config.log
-            M2/M2/BUILD/build/libraries/*/build/*/config.log
-            M2/M2/BUILD/build/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
-            /tmp/M2-*/*.tmp
-            /tmp/M2-*/*.m2
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/config.log
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/libraries/*/build/*/config.log
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/BUILD/rpm/rpmbuild-*/RPMS/*/*.rpm

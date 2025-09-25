@@ -1,44 +1,39 @@
-name: RHEL build
+name: Fedora build
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * 5"
+    - cron: "0 6 * * 4"
 
 jobs:
-  rhel:
+  fedora:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        distribution: ['rockylinux', 'almalinux']
-        version: [8, 9, 10]
-    container:
-      image: ${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }}:${{ matrix.version }}
+        distribution:
+          - rockylinux
+          - almalinux
+        release:
+          - 8
+          - 9
+          - 10
     steps:
-      - name: Install dependencies
+      - uses: actions/checkout@v5
+        with:
+          repository: Macaulay2/M2
+          ref: development
+      - name: Build RPM
         run: |
-          dnf -y install autoconf automake bison boost-devel bzip2 cmake diffutils flex gcc-c++ gcc-gfortran git gmp-devel info libffi-devel libtool libxml2-devel make mpfr-devel ncurses-devel patch python3-devel readline-devel tbb-devel time which xz-devel zlib-devel
-          if test ${{ matrix.version }} -ge 9
-          then
-            dnf -y install flexiblas-devel
-          fi
-      - name: Clone repository
-        run: git clone https://github.com/Macaulay2/M2 -b development --depth 1
-      - name: Build Macaulay2
-        run: |
-          cd M2/M2
-          ./autogen.sh
-          cd BUILD/build
-          ../../configure
-          make
+          cd M2/BUILD/rpm
+image: ${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }}:${{ matrix.version }}
+          make rpm DISTRIBUTION=${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }} RELEASE=${{ matrix.release }}
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.distribution }}-${{ matrix.version }}-artifacts
+          name: fedora-${{ matrix.version }}-artifacts
           path: |
-            M2/M2/BUILD/build/config.log
-            M2/M2/BUILD/build/libraries/*/build/*/config.log
-            M2/M2/BUILD/build/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
-            /tmp/M2-*/*.tmp
-            /tmp/M2-*/*.m2
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/config.log
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/libraries/*/build/*/config.log
+            M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            M2/BUILD/rpm/rpmbuild-*/RPMS/*/*.rpm
