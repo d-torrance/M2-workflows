@@ -1,11 +1,11 @@
-name: Fedora build
+name: RHEL build
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * 4"
 
 jobs:
-  fedora:
+  rhel:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -25,7 +25,6 @@ jobs:
       - name: Build RPM
         run: |
           cd M2/BUILD/rpm
-image: ${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }}:${{ matrix.version }}
           make rpm DISTRIBUTION=${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }} RELEASE=${{ matrix.release }}
       - name: Upload artifacts
         if: always()
