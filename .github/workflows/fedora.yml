@@ -12,7 +12,7 @@ jobs:
       matrix:
         # last two EOL releases -> rawhide
         release:
-          - 39
+#          - 39 (flint is still < 3, so need arb, etc. -- is it worth it?)
           - 40
           - 41
           - 42
@@ -31,7 +31,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fedora-${{ matrix.version }}-artifacts
+          name: fedora-${{ matrix.release }}-artifacts
           path: |
             M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/config.log
             M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/libraries/*/build/*/config.log

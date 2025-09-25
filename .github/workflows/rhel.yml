@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         distribution:
-          - rockylinux
+          # - rockylinux (problem is that the image is rockylinux/rockylinux)
           - almalinux
         release:
           - 8
@@ -25,12 +25,12 @@ jobs:
       - name: Build RPM
         run: |
           cd M2/BUILD/rpm
-          make rpm DISTRIBUTION=${{ matrix.distribution == 'rockylinux' && 'rockylinux/rockylinux' || matrix.distribution }} RELEASE=${{ matrix.release }}
+          make rpm DISTRIBUTION=${{ matrix.distribution }} RELEASE=${{ matrix.release }}
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fedora-${{ matrix.version }}-artifacts
+          name: ${{ matrix.distribution}}-{{ matrix.release }}-artifacts
           path: |
             M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/config.log
             M2/BUILD/rpm/rpmbuild-*/BUILD/Macaulay2-*/M2/libraries/*/build/*/config.log
