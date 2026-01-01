@@ -42,7 +42,7 @@ jobs:
         run: make -C M2/BUILD/build/Macaulay2/packages check-Python
       - name: Upload artifacts
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: python-${{ matrix.version }}-artifacts
           path: |
