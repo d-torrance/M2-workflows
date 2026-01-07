@@ -27,3 +27,8 @@ We build and test Macaulay2 on several RHEL-compatible distributions (AlmaLinux 
 We build and test Macaulay2 (specifically the `Python` package) against the each version of Python from 3.8 to the most recent development version (currently 3.15).
 
 [![Python build](https://github.com/d-torrance/M2-workflows/actions/workflows/python.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/python.yml)
+
+## Homebrew
+We test that the Macaulay2 homebrew bottles can be successfully installed.
+
+[![Test homebrew bottles](https://github.com/d-torrance/M2-workflows/actions/workflows/brew.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/brew.yml)
