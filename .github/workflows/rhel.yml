@@ -28,7 +28,7 @@ jobs:
           make rpm DISTRIBUTION=${{ matrix.distribution }} RELEASE=${{ matrix.release }}
       - name: Upload artifacts
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.distribution}}-${{ matrix.release }}-artifacts
           path: |
