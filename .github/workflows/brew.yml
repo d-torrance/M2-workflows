@@ -21,7 +21,10 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@main
 
       - name: Install Macaulay2
-        run: brew install Macaulay2/tap/M2
+        run: |
+          brew trust Macaulay2/tap
+          brew tap Macaulay2/tap
+          brew install macaulay2
 
       - name: Test Macaulay2 installation
         run: |
