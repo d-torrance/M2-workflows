@@ -24,7 +24,7 @@ We build and test Macaulay2 on several RHEL-compatible distributions (AlmaLinux 
 [![RHEL build](https://github.com/d-torrance/M2-workflows/actions/workflows/rhel.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/rhel.yml)
 
 ## Python
-We build and test Macaulay2 (specifically the `Python` package) against the each version of Python from 3.8 to the most recent development version (currently 3.15).
+We build and test Macaulay2 (specifically the `Python` package) against the each version of Python from 3.8 to the most recent development version (currently 3.16).
 
 [![Python build](https://github.com/d-torrance/M2-workflows/actions/workflows/python.yml/badge.svg)](https://github.com/d-torrance/M2-workflows/actions/workflows/python.yml)
 
