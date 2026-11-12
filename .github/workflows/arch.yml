@@ -21,7 +21,7 @@ jobs:
           ./autogen.sh
           cd BUILD/build
           ../../configure --with-system-gc
-          make
+          make -j$(nproc)
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v7

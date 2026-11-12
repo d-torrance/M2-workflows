@@ -37,7 +37,7 @@ jobs:
           cd BUILD/build
           export LDFLAGS="-L$(python3 -c 'import sysconfig; print(sysconfig.get_config_vars("LIBDIR")[0])')"
           ../../configure --with-system-libs --enable-documentation=info
-          make PACKAGES=Python
+          make -j$(nproc) PACKAGES=Python
       - name: Test Macaulay2
         run: make -C M2/BUILD/build/Macaulay2/packages check-Python
       - name: Upload artifacts
